@@ -5,7 +5,7 @@ const { readdir, stat } = require('fs').promises;
 const { sep } = require('path');
 const xlsx = require("node-xlsx");
 
-const path = '/Users/ronan/OneDrive - Centro Paula Souza/Cisco/LISTA DE PRESENÇA_04_2022';
+const path = '/Users/ronan/OneDrive - Centro Paula Souza/Google/LISTA DE PRESENÇA_02_2022';
 
 const chamadas = [];
 let turma = {};
@@ -36,7 +36,7 @@ function exportacao(planilha) {
     console.log(` -> Iniciando a Gravação do arquivo:`);
     var buffer = xlsx.build(exportacao); // Returns a buffer
 
-    fs.writeFile(`CCNA.xlsx`, buffer);
+    fs.writeFile(`Google.xlsx`, buffer);
     console.log(` -> Arquivo gravado com sucesso!`);
 
 }
