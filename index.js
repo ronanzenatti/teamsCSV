@@ -5,7 +5,7 @@ const { readdir, stat } = require('fs').promises;
 const { sep } = require('path');
 const xlsx = require("node-xlsx");
 
-const path = '/Users/ronan/OneDrive - Centro Paula Souza/Google/LISTA DE PRESENÇA_02_2022';
+const path = '/Users/ronan/OneDrive - Centro Paula Souza/Google/8-2022/Material de Aula/CHAMADAS';
 
 const chamadas = [];
 let turma = {};
@@ -36,7 +36,7 @@ function exportacao(planilha) {
     console.log(` -> Iniciando a Gravação do arquivo:`);
     var buffer = xlsx.build(exportacao); // Returns a buffer
 
-    fs.writeFile(`Google.xlsx`, buffer);
+    fs.writeFile(`GOOGLE.xlsx`, buffer);
     console.log(` -> Arquivo gravado com sucesso!`);
 
 }
@@ -118,9 +118,9 @@ async function processar() {
             records.map(item => {
                 const valor = item[0].split('\t');
 
-                if (valor[0].startsWith('﻿Nom') || valor[0].startsWith('Ful') || valor[0].startsWith('Nom')) {
+                if (valor[0].startsWith('﻿Nom') || valor[0].startsWith('Ful') || valor[0].startsWith('Nom') || valor[0].startsWith('﻿Ful')) {
                     alunos = true;
-                    if (valor[0].startsWith('﻿Nom'))
+                    if (valor[0].startsWith('﻿Nom') || valor[0].startsWith('﻿Ful'))
                         type = 1;
                     else if (valor[0].startsWith('Ful'))
                         type = 2;
@@ -139,13 +139,9 @@ async function processar() {
 
                     if (dia) {
                         dia = false;
-                        if (type == 1) {
+                        if (type == 1 || type == 3) {
                             data.dia = item[2].split(' ')[0].split(',')[0];
-                        }
-                        else if (type == 3) {
-                            data.dia = item[2].split(' ')[0].split(',')[0];
-                        }
-                        else {
+                        } else {
                             data.dia = item[1].split(' ')[0].split(',')[0];
                         }
                     }
